@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        .toggle-button {
+            cursor: pointer;
+            padding: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dashboard de Réconciliation des Volumes et Durées</h1>
+
+    <!-- Toggle Button -->
+    <button class="toggle-button" onclick="toggleColumns()">Afficher/ Masquer les détails</button>
+
+    <!-- Tableau -->
+    <table border="1" id="data-table">
+        <thead>
+            <tr>
+                <th>Type d'appel</th>
+                <th>Service</th>
+                <th>Destination d'appel</th>
+                <th>Opérateur</th>
+                <th class="toggle-column" style="display:none">Volume Total</th>
+                <th class="toggle-column" style="display:none">Durée Totale</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row['type_appel'] }}</td>
+                <td>{{ row['SERVICE'] }}</td>
+                <td>{{ row['dest_appel'] }}</td>
+                <td>{{ row['OPERATEUR'] }}</td>
+                <td class="toggle-column" style="display:none">{{ row['total_volume'] }}</td>
+                <td class="toggle-column" style="display:none">{{ row['total_duration'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function toggleColumns() {
+            var elements = document.getElementsByClassName('toggle-column');
+            for (var i = 0; i < elements.length; i++) {
+                if (elements[i].style.display === 'none') {
+                    elements[i].style.display = 'table-cell';
+                } else {
+                    elements[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

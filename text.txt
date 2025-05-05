@@ -1,0 +1,7 @@
+Avant de voir plus en détails comment fonctionne Spark et 
+comment l'utiliser pour distribuer des calculs sur des données massives, 
+voyons comment réaliser le "Hello World!" du calcul distribué.
+J'ai nommé... le comptage de mots ! Ceci devrait vous donner une idée de ce à quoi ressemble une application Spark.
+Les applications Spark peuvent être créées en Java, Scala ou Python ; 
+dans le reste de ce cours nous utiliserons principalement Python. N'hésitez pas à vous référer à la documentation officielle de
+ Spark pour comprendre comment créer des applications Spark dans votre langage préféré.

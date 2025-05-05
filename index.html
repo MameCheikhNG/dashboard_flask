@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Flask</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Dashboard Voix & SMS</h1>
+
+    <!-- Tableau des données -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>MSISDN</th>
+                <th>DATE</th>
+                <th>MOIS</th>
+                <th>ANNEE</th>
+                <th>VOLUME</th>
+                <th>DURATION</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.MSISDN }}</td>
+                <td>{{ row.DATE }}</td>
+                <td>{{ row.MOIS }}</td>
+                <td>{{ row.ANNEE }}</td>
+                <td>{{ row.VOLUME }}</td>
+                <td>{{ row.DURATION }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Graphique -->
+    <canvas id="usageChart"></canvas>
+
+    <script>
+        var ctx = document.getElementById('usageChart').getContext('2d');
+        var usageChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ months | tojson }},
+                datasets: [{
+                    label: 'Volume',
+                    data: {{ volume | tojson }},
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)'
+                }, {
+                    label: 'Duration',
+                    data: {{ duration | tojson }},
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)'
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
